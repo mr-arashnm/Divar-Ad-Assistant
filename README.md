@@ -1,5 +1,16 @@
 # Divar Ad Assistant
 
+**Folder Purpose:**  
+This folder contains the source code and configuration for the Divar Ad Assistant project. The assistant is designed to extract, enrich, and structure product information from images, product names, and Excel files. It leverages AI models and APIs to automate and improve the process of posting and managing classified ads, and can be integrated with any ad platform via API.
+
+**Folder Contents Overview:**
+- `catagent/product_specs/`: Core utilities for image processing, product identification, and feature extraction.
+- `divar_api.py`: Functions for interacting with the Divar API to fetch product tags and features.
+- `langchain_test.py`: Scripts for testing feature extraction and summarization using language models.
+- `test.py`: Example for extracting product info from images using Gemini.
+- `.env`: API keys and configuration.
+- `README.md`: Project documentation.
+
 Divar Ad Assistant is an intelligent assistant for extracting and collecting product information from images, product names, and Excel files. It uses AI models and various APIs to identify products and gather their specifications. The assistant is designed to be easily integrated into any classified ads system via API.
 
 ## Supported Input Modes
