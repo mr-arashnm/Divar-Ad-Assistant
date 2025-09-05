@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Listing Optimizer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl">
+        <div class="card bg-white rounded-xl p-8 mb-8">
+            <h1 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Product Listing Optimizer</h1>
+            <p class="text-gray-500 text-center mb-8">Improve your online product listings with AI-powered optimization</p>
+            
+            <!-- Step 1: Choose Input Type -->
+            <div id="step1" class="step">
+                <h2 class="text-lg font-medium text-gray-700 mb-4">Step 1: Choose Input Type</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <!-- Option 1: Enter Product Details -->
+                    <label class="radio-card cursor-pointer border rounded-lg p-4 flex flex-col items-center">
+                        <input type="radio" name="inputType" value="manual" class="hidden" checked>
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-keyboard text-blue-500 text-xl"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Enter Product Details</span>
+                        <span class="text-sm text-gray-500 text-center mt-1">Manually enter product information</span>
+                    </label>
+                    
+                    <!-- Option 2: Upload Excel File -->
+                    <label class="radio-card cursor-pointer border rounded-lg p-4 flex flex-col items-center">
+                        <input type="radio" name="inputType" value="excel" class="hidden">
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-file-excel text-blue-500 text-xl"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Upload Excel File</span>
+                        <span class="text-sm text-gray-500 text-center mt-1">Bulk upload with spreadsheet</span>
+                    </label>
+                    
+                    <!-- Option 3: Upload Product Image -->
+                    <label class="radio-card cursor-pointer border rounded-lg p-4 flex flex-col items-center">
+                        <input type="radio" name="inputType" value="image" class="hidden">
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-3">
+                            <i class="fas fa-camera text-blue-500 text-xl"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">Upload Product Image</span>
+                        <span class="text-sm text-gray-500 text-center mt-1">Extract details from photo</span>
+                    </label>
+                </div>
+                
+                <button onclick="showStep2()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition" id="continue">
+                    Continue
+                </button>
+            </div>
+            
+            <!-- Step 2: Show Corresponding Form -->
+            <div id="step2" class="step hidden">
+                <h2 class="text-lg font-medium text-gray-700 mb-4">Step 2: Provide Product Information</h2>
+                
+                <!-- Manual Entry Form -->
+                <div id="manualForm" class="mb-6 space-y-4">
+                    <div>
+                        <label for="productName" class="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
+                        <input type="text" id="productName" placeholder="e.g., Wireless Bluetooth Headphones" 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                    
+                    <div>
+                        <label for="productCategory" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select id="productCategory" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <option value="">Select a category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="furniture">Furniture</option>
+                            <option value="home">Home & Kitchen</option>
+                            <option value="beauty">Beauty & Personal Care</option>
+                            <option value="sports">Sports & Outdoors</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Excel Upload Form -->
+                <div id="excelForm" class="hidden mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Choose Excel File (.xlsx)</label>
+                    <div class="file-upload border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer">
+                        <div class="flex flex-col items-center justify-center">
+                            <i class="fas fa-file-excel text-gray-400 text-4xl mb-3"></i>
+                            <p class="text-gray-600 font-medium">Drag & drop your file here</p>
+                            <p class="text-gray-500 text-sm mt-1">or click to browse</p>
+                            <input type="file" accept=".xlsx,.xls" class="hidden">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Upload Form -->
+                <div id="imageForm" class="hidden mb-6">
+                    <label for="productImageUrl" class="block text-sm font-medium text-gray-700 mb-2">
+                        Enter Product Image URL
+                    </label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                        <div class="flex flex-col items-center justify-center">
+                        <i class="fas fa-link text-gray-400 text-3xl mb-3"></i>
+                        <p class="text-gray-600 font-medium">Paste image URL below</p>
+                        <input
+                            type="text"
+                            id="productImageUrl"
+                            placeholder="https://example.com/my-product.jpg"
+                            class="mt-2 w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                        />
+                        </div>
+                    </div>
+                    </div>
+
+                <div class="flex space-x-4">
+                    <button onclick="showStep1()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-4 rounded-lg transition">
+                        Back
+                    </button>
+                    <button onclick="generateAd()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition">
+                        Generate Optimized Ad
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results Section -->
+        <div id="resultsSection" class="card bg-white rounded-xl p-8 hidden">
+            <h2 class="text-lg font-medium text-gray-700 mb-4">Optimized Product Listing</h2>
+            
+            <!-- Loading State -->
+            <div id="loadingState" class="flex flex-col items-center justify-center py-12">
+                <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full loading-spinner mb-4"></div>
+                <p class="text-gray-600">Analyzing and optimizing your product listing...</p>
+            </div>
+            
+            <!-- Results Content -->
+            <div id="resultsContent" class="hidden">
+                <div class="border border-gray-200 rounded-lg p-6 mb-6">
+                    <h3 class="font-semibold text-gray-800 mb-3">Premium Wireless Bluetooth Headphones</h3>
+                    <p class="text-gray-600 mb-4">Experience crystal-clear sound with our noise-cancelling wireless headphones. Perfect for music lovers and professionals alike.</p>
+                    
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600 mb-4">
+                        <li>40mm dynamic drivers for rich, detailed sound</li>
+                        <li>Active Noise Cancellation (ANC) technology</li>
+                        <li>30-hour battery life with quick charge</li>
+                        <li>Comfortable over-ear design with plush cushions</li>
+                        <li>Built-in microphone for hands-free calls</li>
+                    </ul>
+                    
+                    <p class="text-blue-600 font-medium">🔊 Limited-time offer: Includes free carrying case with purchase!</p>
+                </div>
+                
+                <button class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition flex items-center justify-center gap-2">
+                    <i class="far fa-copy"></i>
+                    Copy to Clipboard
+                </button>
+                
+                <button onclick="resetForm()" class="w-full mt-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-4 rounded-lg transition">
+                    Optimize Another Product
+                </button>
+            </div>
+        </div>
+    </div>
+  <script src="script.js"></script>
+</body>
+</html>

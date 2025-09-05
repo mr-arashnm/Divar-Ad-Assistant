@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get product data from sessionStorage
+            const raw = localStorage.getItem('productData');
+            if (!raw) {
+                console.error('No product data found');
+                return;
+            }
+
+            const product = JSON.parse(raw);
+            console.log(product)
+
+            // Set page title and product title
+            document.title = `${product.title} - Product Details`;
+            document.querySelector('h1').textContent = product.title;
+
+            // Set product image
+            const imgEl = document.querySelector('.product-layout img');
+            if (imgEl && product.images[0]) {
+                imgEl.src = product.images[0];
+                imgEl.alt = product.title;
+            }
+
+            // Populate key features
+            const featuresGrid = document.querySelector('.features-grid');
+            if (featuresGrid && product.specs) {
+                featuresGrid.innerHTML = '';
+                for (const [key, value] of Object.entries(product.specs)) {
+                    const badge = document.createElement('div');
+                    badge.className = 'feature-badge bg-blue-50 text-blue-800 px-4 py-3 rounded-lg';
+                    badge.innerHTML = `
+                        <div class="font-medium">${key}</div>
+                        <div class="text-sm">${value}</div>
+                    `;
+                    featuresGrid.appendChild(badge);
+                }
+            }
+
+            // Populate specifications
+            const specsContainer = document.querySelector('.specs-container');
+            if (specsContainer && product.specs) {
+                specsContainer.innerHTML = '';
+                for (const [key, value] of Object.entries(product.specs)) {
+                    const row = document.createElement('div');
+                    row.className = 'border-b border-gray-100 pb-4';
+                    row.innerHTML = `
+                        <div class="text-gray-500 text-sm">${key}</div>
+                        <div class="text-gray-800">${value}</div>
+                    `;
+                    specsContainer.appendChild(row);
+                }
+            }
+
+            // Set description if available
+            if (product.description) {
+                document.querySelector('.product-description').textContent = product.description;
+            } else {
+                document.querySelector('.product-description').remove();
+            }
+
+            // Populate FAQ section if available
+            const faqContainer = document.querySelector('.faq-container');
+            if (faqContainer && product.questions && product.questions.length > 0) {
+                faqContainer.innerHTML = '';
+                console.log(product.questions)
+                for (let i = 0; i < product.questions.length; i++) {
+                    console.log(product.questions[i])
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'faq-item border-b border-gray-100 py-4';
+                    faqItem.innerHTML = `
+                        <div class="faq-answer mt-2 text-gray-600 transition-all duration-300 max-h-0">
+                            <div class="pb-2">${product.questions[i]}</div>
+                        </div>
+                    `;
+                    faqContainer.appendChild(faqItem);
+                };
+
+                // Add click event for FAQ items
+                document.querySelectorAll('.faq-question').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const answer = button.nextElementSibling;
+                        const icon = button.querySelector('svg');
+
+                        // Toggle answer visibility
+                        if (answer.classList.contains('max-h-0')) {
+                            answer.classList.remove('max-h-0');
+                            answer.classList.add('max-h-96', 'mt-2');
+                            icon.classList.add('rotate-180');
+                        } else {
+                            answer.classList.add('max-h-0');
+                            answer.classList.remove('max-h-96', 'mt-2');
+                            icon.classList.remove('rotate-180');
+                        }
+                    });
+                });
+            } else {
+                document.querySelector('.faq-section').remove();
+            }
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .product-card {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .feature-badge {
+            transition: all 0.2s ease;
+        }
+
+        .feature-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        .faq-answer {
+            transition: max-height 0.3s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .product-layout {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Product Card -->
+        <div class="product-card bg-white rounded-2xl overflow-hidden">
+            <div class="product-layout flex flex-col md:flex-row">
+                <!-- Product Image -->
+                <div class="md:w-1/2 p-6 md:p-8 flex items-center justify-center bg-gray-50">
+                    <div class="relative w-full h-80 md:h-96 flex items-center justify-center">
+                        <img src=""
+                             alt=""
+                             class="max-h-full max-w-full object-contain rounded-lg">
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="md:w-1/2 p-6 md:p-8">
+                    <!-- Title -->
+                    <h1 class="text-3xl font-bold text-gray-900 mb-3">Loading product...</h1>
+
+                    <!-- Description -->
+                    <p class="product-description text-gray-600 mb-6 leading-relaxed">
+                        Loading description...
+                    </p>
+
+                    <!-- Features -->
+                    <div class="mb-8">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-4">Key Features</h2>
+                        <div class="features-grid grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <!-- Features will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                        <button class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 font-medium py-3 px-6 rounded-lg transition flex items-center justify-center gap-2">
+                            <i class="far fa-heart"></i>
+                            Wishlist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info Section -->
+        <div class="mt-8 space-y-6">
+            <!-- Specifications -->
+            <div class="bg-white rounded-2xl p-6 product-card">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Specifications</h2>
+                <div class="specs-container space-y-4">
+                    <!-- Specifications will be populated dynamically -->
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section bg-white rounded-2xl p-6 product-card">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <!-- FAQ items will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

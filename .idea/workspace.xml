@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b3071cf5-f8d3-4957-8b92-9950bb5e0312" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/divar_ad_assistant.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/catagent/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/catagent/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/catagent/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/catagent/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/catagent/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catagent/product_specs/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/divar_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/langchain_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-    </list>
+    <list default="true" id="b3071cf5-f8d3-4957-8b92-9950bb5e0312" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
